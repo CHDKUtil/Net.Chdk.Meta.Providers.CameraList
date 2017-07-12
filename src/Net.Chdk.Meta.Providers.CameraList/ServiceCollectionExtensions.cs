@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Net.Chdk.Meta.Providers.CameraList.Zip
+namespace Net.Chdk.Meta.Providers.CameraList
 {
     public static class ServiceCollectionExtensions
     {
