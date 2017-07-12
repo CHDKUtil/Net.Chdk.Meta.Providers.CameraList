@@ -1,27 +1,22 @@
 ﻿using Net.Chdk.Meta.Model.CameraList;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace Net.Chdk.Meta.Providers.CameraList
 {
-    sealed class CameraListProvider : ICameraListProvider
+    sealed class CameraListProvider : SingleExtensionProvider<IInnerCameraListProvider>, ICameraListProvider
     {
-        private IEnumerable<IInnerCameraListProvider> InnerProviders;
-
         public CameraListProvider(IEnumerable<IInnerCameraListProvider> innerProviders)
+            : base(innerProviders)
         {
-            InnerProviders = innerProviders;
         }
 
         public IDictionary<string, ListPlatformData> GetCameraList(string path, string categoryName)
         {
-            var ext = Path.GetExtension(path);
-            var writer = InnerProviders.SingleOrDefault(w => w.Extension.Equals(ext, StringComparison.OrdinalIgnoreCase));
-            if (writer == null)
-                throw new InvalidOperationException($"Unknown camera writer extension: {ext}");
-            return writer.GetCameraList(path, categoryName);
+            var provider = GetInnerProvider(path, out string ext);
+            if (provider == null)
+                throw new InvalidOperationException($"Unknown camera list extension: {ext}");
+            return provider.GetCameraList(path, categoryName);
         }
     }
 }

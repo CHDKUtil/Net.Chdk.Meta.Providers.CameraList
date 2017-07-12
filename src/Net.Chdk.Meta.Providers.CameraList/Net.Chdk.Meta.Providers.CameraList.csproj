@@ -25,7 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Base\src\Net.Chdk.Meta.Providers.Base\Net.Chdk.Meta.Providers.Base.csproj" />
     <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.CameraList.Core\src\Net.Chdk.Meta.Providers.CameraList.Core\Net.Chdk.Meta.Providers.CameraList.Core.csproj" />
+    <ProjectReference Include="..\..\..\Net.Chdk.Meta.Providers.Core\src\Net.Chdk.Meta.Providers.Core\Net.Chdk.Meta.Providers.Core.csproj" />
   </ItemGroup>
 
 </Project>
