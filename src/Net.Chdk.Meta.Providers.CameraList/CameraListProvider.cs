@@ -11,12 +11,12 @@ namespace Net.Chdk.Meta.Providers.CameraList
         {
         }
 
-        public IDictionary<string, ListPlatformData> GetCameraList(string path, string categoryName)
+        public IDictionary<string, ListPlatformData> GetCameraList(string path, string productName)
         {
             var provider = GetInnerProvider(path, out string ext);
             if (provider == null)
                 throw new InvalidOperationException($"Unknown camera list extension: {ext}");
-            return provider.GetCameraList(path, categoryName);
+            return provider.GetCameraList(path, productName);
         }
     }
 }
